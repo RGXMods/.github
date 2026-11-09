@@ -34,7 +34,7 @@ Dedicated variants and addons for WoW Forever beta (project Camelot):
 - [BLU Forever](https://github.com/RGXMods/BLU_Forever) ([CurseForge](https://www.curseforge.com/wow/addons/better-level-up-forever))
 - [Simple Quest Plates Forever](https://github.com/RGXMods/SimpleQuestPlates_Forever) ([CurseForge](https://www.curseforge.com/wow/addons/rgx-simple-quest-plates-forever))
 - [Remove Nameplate Debuffs Forever](https://github.com/RGXMods/RemoveNameplateDebuffs_Forever) ([CurseForge](https://www.curseforge.com/wow/addons/rgx-remove-nameplate-debuffs-forever))
-- [RGX Professions](https://github.com/RGXMods/RGXProfessions)
+- [RGX Professions](https://github.com/RGXMods/RGXProfessions) ([CurseForge](https://www.curseforge.com/wow/addons/rgx-profession-leveling-guide))
 - [RGX QoL](https://github.com/RGXMods/RGXQoL)
 
 ### Framework and Reference Addon
