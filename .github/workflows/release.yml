@@ -145,10 +145,27 @@ jobs:
           GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
           WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
 
+      - name: Determine channel
+        id: channel
+        shell: bash
+        env:
+          REQUESTED: ${{ inputs.release_type }}
+        run: |
+          channel="${REQUESTED}"
+          if [[ -z "$channel" ]]; then
+            case "${GITHUB_REF}" in
+              *-alpha*) channel=alpha ;;
+              *-beta*)  channel=beta ;;
+              *)        channel=release ;;
+            esac
+          fi
+          echo "channel=$channel" >> "$GITHUB_OUTPUT"
+          echo "Channel: $channel"
+
       - name: Release notes
         run: |
           echo "Version: ${{ steps.meta.outputs.version }}"
-          echo "Channel: ${{ inputs.release_type || 'release' }}"
+          echo "Channel: ${{ steps.channel.outputs.channel }}"
           echo "CurseForge packages tagged commits on its own; no upload here."
 
       - name: Discord notification
@@ -163,7 +180,7 @@ jobs:
         run: |
           [[ -z "$DISCORD_WEBHOOK" ]] && exit 0
 
-          channel="${{ inputs.release_type || 'release' }}"
+          channel="${{ steps.channel.outputs.channel }}"
           case "$channel" in
             beta)  colour=16744448; label="Beta Build" ;;
             alpha) colour=9109504;  label="Alpha Build" ;;
