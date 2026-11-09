@@ -6,6 +6,8 @@ name: RGX Release
 #
 #   jobs:
 #     release:
+#       permissions:
+#         contents: write          # required: the caller must grant this
 #       uses: RGXMods/.github/.github/workflows/release.yml@main
 #       secrets: inherit
 #
@@ -53,8 +55,6 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
       - name: Clone project
@@ -73,6 +73,8 @@ jobs:
       - name: Read addon metadata
         id: meta
         shell: bash
+        env:
+          ADDON_NAME: ${{ vars.ADDON_NAME }}
         run: |
           addon="${ADDON_NAME:-}"
           if [[ -z "$addon" ]]; then
