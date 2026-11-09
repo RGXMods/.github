@@ -46,10 +46,17 @@ on:
         required: false
         type: boolean
         default: true
+      curseforge:
+        description: Upload to CurseForge with the packager (leave false when the project packages tagged commits itself)
+        required: false
+        type: boolean
+        default: false
     secrets:
       DISCORD_WEBHOOK:
         required: false
       WAGO_API_TOKEN:
+        required: false
+      CF_API_KEY:
         required: false
 
 jobs:
@@ -144,6 +151,7 @@ jobs:
         env:
           GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
           WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+          CF_API_KEY: ${{ inputs.curseforge && secrets.CF_API_KEY || '' }}
 
       - name: Determine channel
         id: channel
