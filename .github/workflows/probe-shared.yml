@@ -1,8 +1,0 @@
-name: probe shared
-on:
-  workflow_call:
-jobs:
-  p:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo shared ok
